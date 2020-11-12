@@ -16,48 +16,45 @@ const optionDefinitions = [
 const opts = commandLineArgs(optionDefinitions);
 
 (async () => {
-  if (! opts.src) {
+  if (!opts.src) {
     console.log('You must specify at least one path');
-  }
-  else {
+  } else {
     if (!opts.simulate) {
-      process.stdout.write(`\n`);
+      process.stdout.write('\n');
 
       await player.init(opts);
       await listen(player);
 
       await player.play();
-    }
-    else {
+    } else {
       let playState = PlayState(Song(opts.src));
       playState.mode = opts.mode;
       playState = await player.setState(playState);
 
       await meta.setMetadata(playState.playing);
       printer.printSong(playState);
-      
-      const i = setInterval(async function(){
+
+      const i = setInterval(async function () {
         playState.playing = playState.next;
         playState = await player.setState(playState);
-        
+
         if (!playState) {
           console.log('END PLAYING');
           clearInterval(i);
           return;
         }
-        
+
         await meta.setMetadata(playState.playing);
         printer.printSong(playState);
 
         if (!playState.next.path) {
           console.log('END PLAYING');
           clearInterval(i);
-          return;
         }
       }, 1000);
     }
   }
 })().catch(e => {
-  console.log(e)
+  console.log(e);
   // Deal with the fact the chain failed
 });
