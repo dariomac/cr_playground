@@ -4,7 +4,8 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "show-mem": "ps aux | head -1 && ps aux -h | egrep '[i]ndex.js|[m]pg123'"
+    "show-mem": "ps aux | head -1 && ps aux -h | egrep '[i]ndex.js|[m]pg123'",
+    "lint": "semistandard 'lib/*.js' 'index.js' --env node --verbose | snazzy"
   },
   "dependencies": {
     "chalk": "^4.0.0",
@@ -19,6 +20,8 @@
     "log-update": "^4.0.0",
     "music-metadata": "^6.4.0",
     "node-fetch": "^2.6.0",
+    "semistandard": "^16.0.0",
+    "snazzy": "^9.0.0",
     "urlencode": "^1.1.0"
   }
 }
