@@ -7,6 +7,11 @@
     "show-mem": "ps aux | head -1 && ps aux -h | egrep '[i]ndex.js|[m]pg123'",
     "lint": "semistandard 'lib/*.js' 'index.js' --env node --verbose | snazzy"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn lint"
+    }
+  },
   "dependencies": {
     "chalk": "^4.0.0",
     "cli-columns": "^3.1.2",
@@ -16,6 +21,7 @@
     "escape-string-regexp": "^4.0.0",
     "fs-extra": "^9.0.0",
     "genius-lyrics-api": "^3.0.0",
+    "husky": "^4.3.0",
     "lodash": "^4.17.15",
     "log-update": "^4.0.0",
     "music-metadata": "^6.4.0",
