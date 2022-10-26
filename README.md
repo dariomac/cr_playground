@@ -1,3 +1,12 @@
+# How to replace master with the `bkp_dmp3` branch
+```
+git checkout master
+git branch -m master old-master
+git checkout bkp_dmp3
+git branch -m bkp_dmp3 master
+git push -f origin master
+```
+
 # Google as Lyric provider
 ```
 const fetch = require('node-fetch');
